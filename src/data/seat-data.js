@@ -154,10 +154,10 @@ const seats = [
 export const seatData = seats.map((item) => {
     const [seatRowPosition, seatRow] = item.seatNumber.match(/\D+|[\d\.]+/g);
     return {
+        ...item,
         seatRow,
         seatRowPosition: parseInt(seatRowPosition, 10),
-        value: parseFloat(item.price.replace(/[^\d.]/g, '')),
-        ...item
+        value: parseFloat(item.price.replace(/[^\d.]/g, ''))
     }
 })
 
