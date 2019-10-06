@@ -4,13 +4,14 @@ import { SeatCounterComponent, SeatLayoutComponent } from './components';
 import { seatLayoutModel } from './data/seat-data';
 
 import './App.css';
+import { timingSafeEqual } from 'crypto';
 
 class App extends Component {
 
   constructor(props) {
     super(props)
     this.state = {
-      numberOfTickets: '',
+      numberOfTickets: 1,
       selectedSeats: [],
       selectedSeatNumbers: [],
       selectedSeatValue: 0
@@ -18,7 +19,10 @@ class App extends Component {
   }
 
   handleNumerOfTicketsCounterChange = (evt) => {
-    const numberOfTickets = (evt.target.validity.valid) ? evt.target.value : this.state.numberOfTickets;
+    const numberOfTickets = (evt.target.validity.valid) && evt.target.value > 0  && evt.target.value < 5 // TODO: Handle max value based on the available tickets
+                            ? parseInt(evt.target.value, 10)  
+                            : this.state.numberOfTickets;
+
     this.setState({ numberOfTickets });
   }
 
@@ -42,11 +46,21 @@ class App extends Component {
       selectedSeatValue -= seatInfo.value;
     }
 
+    if(this.state.numberOfTickets < selectedSeats.length) {
+     const removedItem = selectedSeats.shift();
+      selectedSeatNumbers.shift();
+      selectedSeatValue -= removedItem.value;
+    }
+
     return {
       selectedSeats,
       selectedSeatNumbers,
       selectedSeatValue
     }
+  }
+
+  handleSelectingOverCount = (seatInfo) => {
+
   }
 
   render() {
