@@ -4,7 +4,6 @@ import { SeatCounterComponent, SeatLayoutComponent } from './components';
 import { seatLayoutModel } from './data/seat-data';
 
 import './App.css';
-import { timingSafeEqual } from 'crypto';
 
 class App extends Component {
 
@@ -19,11 +18,11 @@ class App extends Component {
   }
 
   handleNumerOfTicketsCounterChange = (evt) => {
-    const numberOfTickets = (evt.target.validity.valid) && evt.target.value > 0  && evt.target.value < 5 // TODO: Handle max value based on the available tickets
-                            ? parseInt(evt.target.value, 10)  
-                            : this.state.numberOfTickets;
+    const numberOfTickets = (evt.target.validity.valid) && evt.target.value > 0 && evt.target.value < 5 // TODO: Handle max value based on the available tickets
+      ? parseInt(evt.target.value, 10)
+      : this.state.numberOfTickets;
 
-    this.setState({ numberOfTickets });
+    this.setState(this.counterSelectState(numberOfTickets));
   }
 
   onSeatSelect = (seatInfo) => () => {
@@ -46,8 +45,8 @@ class App extends Component {
       selectedSeatValue -= seatInfo.value;
     }
 
-    if(this.state.numberOfTickets < selectedSeats.length) {
-     const removedItem = selectedSeats.shift();
+    if (this.state.numberOfTickets < selectedSeats.length) {
+      const removedItem = selectedSeats.shift();
       selectedSeatNumbers.shift();
       selectedSeatValue -= removedItem.value;
     }
@@ -59,8 +58,23 @@ class App extends Component {
     }
   }
 
-  handleSelectingOverCount = (seatInfo) => {
+  counterSelectState = (numberOfTickets) => {
+    let selectedSeats = [...this.state.selectedSeats];
+    let selectedSeatNumbers = [...this.state.selectedSeatNumbers];
+    let selectedSeatValue = this.state.selectedSeatValue;
 
+    if (numberOfTickets < selectedSeats.length) {
+      const removedItem = selectedSeats.shift();
+      selectedSeatNumbers.shift();
+      selectedSeatValue -= removedItem.value;
+    }
+
+    return {
+      numberOfTickets,
+      selectedSeats,
+      selectedSeatNumbers,
+      selectedSeatValue
+    }
   }
 
   render() {
