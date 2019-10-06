@@ -22,15 +22,16 @@ export class SeatLayoutComponent extends Component {
                     <div className='cinema-row_seat-letter'>{rowLetter}</div>
                     {
                         values[i].map((seat, j) => {
-                            const activeClass = this.props.selectedSeatNumbers.indexOf(seat.seatNumber) > -1 ? ' active' : '';
-                            if(activeClass) {
-                                console.log(activeClass);
-                            }
+                            // TODO: add different types of tickets based on value e.g. sale, regular
+                            const activeClass = this.props.selectedSeatNumbers.indexOf(seat.seatNumber) > -1 ? ' active' : ''; 
+                            const soldClass = !seat.available ? ' sold' : ''; // TODO: Follow BEM
+                            const accessibleClass = seat.disabilityAccessible ? ' accessible' : '';
+
                             return (
                                 <div
                                     key={j}
-                                    className={`cinema-row_seat-number${activeClass}`}
-                                    onClick={this.props.onSeatSelect(seat)}
+                                    className={`cinema-row_seat-number${activeClass}${soldClass}${accessibleClass}`}
+                                    onClick={seat.available ? this.props.onSeatSelect(seat) : null}
                                 >
                                     {seat.seatNumber}
                                 </div>

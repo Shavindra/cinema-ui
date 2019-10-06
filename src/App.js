@@ -42,13 +42,11 @@ class App extends Component {
       selectedSeatValue -= seatInfo.value;
     }
 
-
     return {
       selectedSeats,
       selectedSeatNumbers,
       selectedSeatValue
     }
-
   }
 
   render() {

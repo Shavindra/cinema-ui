@@ -21,3 +21,17 @@
 .cinema-row_seat-letter {
     padding: 20px;
 }
+
+.active {
+    background: #000000;
+    color: #FFFFFF;
+}
+
+.sold {
+    background: #C1C1C1;
+    cursor: pointer;
+}
+
+.accessible {
+    border: 2px solid blue;
+}
