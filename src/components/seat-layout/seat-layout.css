@@ -1,0 +1,10 @@
+.cinema-row {
+    display: flex;
+    justify-content: space-between;
+}
+
+.cinema-row_seat-number {
+    padding: 20px;
+    border: 1px solid;
+    cursor: pointer;
+}
