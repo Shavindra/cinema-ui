@@ -166,4 +166,3 @@ export const seatLayoutModel = seatData.reduce(function (r, a, i) {
     r[a.seatRow].push(a);
     return r;
 }, Object.create(null))
-

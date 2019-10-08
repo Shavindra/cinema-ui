@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import { SeatCounterComponent, SeatLayoutComponent } from './components';
 import { seatLayoutModel } from './data/seat-data';
 
+// TODO: MDC for web / Material UI
 import './App.css';
 
 class App extends Component {
