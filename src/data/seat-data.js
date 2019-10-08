@@ -152,7 +152,7 @@ const seats = [
 ]
 
 export const seatData = seats.map((item) => {
-    const [seatRowPosition, seatRow] = item.seatNumber.match(/\D+|[\d\.]+/g);
+    const [seatRowPosition, seatRow] = item.seatNumber.match(/\D+|[\d]+/g);
     return {
         ...item,
         seatRow,

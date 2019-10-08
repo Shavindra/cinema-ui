@@ -78,16 +78,15 @@ class App extends Component {
   }
 
   render() {
-    console.log(this.state);
     return (
       <div className="App">
         <main>
+          <SeatCounterComponent onChange={this.handleNumerOfTicketsCounterChange} value={this.state.numberOfTickets} />
           <SeatLayoutComponent
             data={seatLayoutModel}
             onSeatSelect={this.onSeatSelect}
             selectedSeatNumbers={this.state.selectedSeats.map((seat) => seat.seatNumber)}
           />
-          <SeatCounterComponent onChange={this.handleNumerOfTicketsCounterChange} value={this.state.numberOfTickets} />
         </main>
       </div>
     );

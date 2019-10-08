@@ -14,7 +14,6 @@ export class SeatLayoutComponent extends Component {
     getLayout() {
         const values = Object.values(this.props.data);
         const keys = Object.keys(this.props.data);
-        console.log(this.props.selectedSeatNumbers);
 
         return keys.map((rowLetter, i) => {
             return (
