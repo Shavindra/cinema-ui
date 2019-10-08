@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import { SeatCounterComponent, SeatLayoutComponent } from './components';
+import { SeatCounterComponent, SeatLayoutComponent, SeatSummaryComponent } from './components';
 import { seatLayoutModel } from './data/seat-data';
 
 // TODO: MDC for web / Material UI
@@ -16,6 +16,25 @@ class App extends Component {
       selectedSeatNumbers: [],
       selectedSeatValue: 0
     }
+  }
+
+  render() {
+    console.log(this.state);
+    return (
+      <div className="App">
+        <main>
+          <SeatLayoutComponent
+            data={seatLayoutModel}
+            onSeatSelect={this.onSeatSelect}
+            selectedSeatNumbers={this.state.selectedSeats.map((seat) => seat.seatNumber)}
+          />
+        </main>
+        <div className='booking-form'>
+          <SeatCounterComponent onChange={this.handleNumerOfTicketsCounterChange} value={this.state.numberOfTickets} />
+          <SeatSummaryComponent selectedSeats={this.state.selectedSeats} selectedSeatValue={this.state.selectedSeatValue} />
+        </div>
+      </div>
+    );
   }
 
   handleNumerOfTicketsCounterChange = (evt) => {
@@ -55,7 +74,7 @@ class App extends Component {
     return {
       selectedSeats,
       selectedSeatNumbers,
-      selectedSeatValue
+      selectedSeatValue: +parseFloat(selectedSeatValue).toFixed(2)
     }
   }
 
@@ -74,24 +93,10 @@ class App extends Component {
       numberOfTickets,
       selectedSeats,
       selectedSeatNumbers,
-      selectedSeatValue
+      selectedSeatValue: +parseFloat(selectedSeatValue).toFixed(2)
     }
   }
 
-  render() {
-    return (
-      <div className="App">
-        <main>
-          <SeatCounterComponent onChange={this.handleNumerOfTicketsCounterChange} value={this.state.numberOfTickets} />
-          <SeatLayoutComponent
-            data={seatLayoutModel}
-            onSeatSelect={this.onSeatSelect}
-            selectedSeatNumbers={this.state.selectedSeats.map((seat) => seat.seatNumber)}
-          />
-        </main>
-      </div>
-    );
-  }
 }
 
 export default App;

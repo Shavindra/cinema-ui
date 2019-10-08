@@ -157,7 +157,7 @@ export const seatData = seats.map((item) => {
         ...item,
         seatRow,
         seatRowPosition: parseInt(seatRowPosition, 10),
-        value: parseFloat(item.price.replace(/[^\d.]/g, ''))
+        value: +parseFloat(item.price.replace(/[^\d.]/g, '')).toFixed(2)
     }
 })
 
