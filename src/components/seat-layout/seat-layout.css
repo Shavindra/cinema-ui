@@ -1,0 +1,37 @@
+.cinema-layout {
+    max-width: 600px;
+    margin: auto;
+    padding: 20px;
+}
+
+.cinema-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 10px 0;
+}
+
+.cinema-row_seat-number {
+    width: 60px;
+    padding: 10px 0;
+    border: 1px solid;
+    cursor: pointer;
+}
+
+.cinema-row_seat-letter {
+    padding: 20px;
+}
+
+.active {
+    background: #000000;
+    color: #FFFFFF;
+}
+
+.sold {
+    background: #C1C1C1;
+    cursor: pointer;
+}
+
+.accessible {
+    border: 2px solid blue;
+}

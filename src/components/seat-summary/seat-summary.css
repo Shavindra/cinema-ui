@@ -1,0 +1,10 @@
+.ticket-list, .ticket-row, .ticket-total {
+    display: flex;
+
+}
+
+.ticket-row, .ticket-total {
+    padding: 10px;
+    flex: 1;
+    justify-content: space-between;
+}
